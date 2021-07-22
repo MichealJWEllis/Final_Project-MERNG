@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const { MONGODB } = require('./config.js')
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Final_Project-MERNG', {
+
+mongoose.connect(MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
