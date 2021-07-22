@@ -1,6 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express')
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 // const { MONGODB } = require('./config/config.js');
 
 const app = express();
@@ -37,6 +37,7 @@ app.use(express.json());
 //     })
 
 db.once('open', () => {
+    console.log('MongoDB Connected');
     app.listen(PORT, () => {
         console.log(`API server running on port ${PORT}!`);
         // log where we can go to test our GQL API

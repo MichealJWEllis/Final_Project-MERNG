@@ -1,5 +1,6 @@
 const { model, Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
+const dateFormat = require('../utils/dateFormat');
 const userSchema = new Schema(
     {
         username: {
@@ -18,7 +19,12 @@ const userSchema = new Schema(
             type: String,
             required: true,
             minlength: 5
-        }
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: timestamp => dateFormat(timestamp)
+        },
     },
     {
         toJSON: {
