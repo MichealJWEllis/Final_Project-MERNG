@@ -12,7 +12,8 @@ const db = require('./config/connection.js');
 
 const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    context: ({ req }) => ({ req })
 
 })
 server.applyMiddleware({ app });
