@@ -1,38 +1,39 @@
-const jwt = require('jsonwebtoken');
-const secret = 'mysecretsshhhhh';
-const expiration = '2h';
+module.exports.validationReg = (username,
+    email,
+    password,
+    confirmPassword
+) => {
+    const errors = {};
+    if (username.trim() === '') {
+        errors.username = 'Username must be filled'
+    }
+    if (email.trim() === '') {
+        errors.email = "Email can't be empty"
+    }
+    if (password.trim() === '') {
+        errors.password = "Password required"
+    } else if (password !== confirmPassword) {
+        errors.confirmPassword = 'Passwords must match'
+    }
 
-module.exports = {
-    signToken: function ({ username, email, _id }) {
-        const payload = { username, email, _id };
-        return jwt.sign({ data: payload }, secret, { expiresIn: expiration })
-    },
-    authMiddleware: function ({ req }) {
-        // allows token to be sent via req.body, req.query, or headers
-        let token = req.body.token || req.query.token || req.headers.authorization;
-
-        // separate "Bearer" from "<tokenvalue>"
-        if (req.headers.authorization) {
-            token = token
-                .split(' ')
-                .pop()
-                .trim();
-        }
-
-        // if no token, return request object as is
-        if (!token) {
-            return req;
-        }
-
-        try {
-            // decode and attach user data to request object
-            const { data } = jwt.verify(token, secret, { maxAge: expiration });
-            req.user = data;
-        } catch {
-            console.log('Invalid token');
-        }
-
-        // return updated request object
-        return req;
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1
     }
 }
+
+module.exports.validateLogin = (username, password) => {
+    const errors = {}
+    if (username.trim() === '') {
+        errors.username = 'Username must be filled'
+    }
+    if (password.trim() === '') {
+        errors.password = 'Password required'
+    }
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1
+    }
+
+}
+
