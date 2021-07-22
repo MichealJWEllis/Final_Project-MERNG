@@ -1,0 +1,25 @@
+{
+  "name": "Final_Project-MERNG",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichealJWEllis/Final_Project-MERNG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichealJWEllis/Final_Project-MERNG/issues"
+  },
+  "homepage": "https://github.com/MichealJWEllis/Final_Project-MERNG#readme",
+  "dependencies": {
+    "apollo-server": "^3.0.2",
+    "graphql": "^15.5.1",
+    "mongoose": "^5.13.3"
+  }
+}
