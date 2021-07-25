@@ -18,6 +18,14 @@ function genToken(user) {
 }
 
 const resolvers = {
+    Post: {
+        likeCount(parent) {
+            return parent.likes.length
+        },
+        commentCount(parent) {
+            return parent.comments.length
+        }
+    },
     Query: {
         async getPosts() {
             try {
@@ -128,7 +136,65 @@ const resolvers = {
             } catch (e) {
                 throw new Error(e);
             }
+        },
+        async createComment(_, { postId, body }, context) {
+            const { username } = checkAuth(context)
+            if (body.trim() === '') {
+                throw new UserInputError('Empty comment', {
+                    errors: {
+                        body: "Comment body can't be empty"
+                    }
+                })
+            }
+            const post = await Post.findById(postId)
+            if (post) {
+                post.comments.unshift({
+                    body,
+                    username,
+                    createdAt: new Date()
+
+                })
+                await post.save()
+                return post
+            } else {
+                throw new UserInputError("Post doesn't exist")
+            }
+        },
+        async deleteComment(_, { postId, commentId }, context) {
+            const { username } = checkAuth(context)
+            const post = await Post.findById(postId)
+            if (post) {
+                const commentIndex = post.comments.findIndex(a => a.id === commentId)
+                if (post.comments[commentIndex].username === username) {
+                    post.comments.splice(commentIndex, 1)
+                    await post.save()
+                    return post
+                } else {
+                    throw new AuthenticationError('This is not allowed')
+                }
+            } else {
+                throw new UserInputError('Post not found')
+            }
+        },
+        async likePost(_, { postId }, context) {
+            const { username } = checkAuth(context)
+            const post = await Post.findById(postId)
+            if (post) {
+                if (post.likes.find(like => like.username === username)) {
+                    post.likes = post.likes.filter(like => like.username !== username)
+                } else {
+                    post.likes.push({
+                        username,
+                        createdAt: new Date()
+                    })
+                }
+                await post.save()
+                return post
+            } else {
+                throw new UserInputError('Post not found')
+            }
         }
+
     }
 }
 
