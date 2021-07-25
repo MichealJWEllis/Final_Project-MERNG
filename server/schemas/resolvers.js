@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 const { KEY } = require("../config/config")
 const { UserInputError } = require('apollo-server-express')
 const { validationReg, validateLogin } = require('../utils/auth')
-const checkAuth = require('../utils/check-auth')
+const checkAuth = require('../utils/check-auth');
+const { argsToArgsConfig } = require("graphql/type/definition");
 
 
 
@@ -112,7 +113,9 @@ const resolvers = {
         async createPost(_, { body }, context) {
             // console.log('test');
             const user = checkAuth(context)
-
+            if (args.body.trim() === '') {
+                throw new Error("Post can't be empty")
+            }
             const newPost = new Post({
                 body,
                 user: user.id,
