@@ -4,12 +4,12 @@ import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 import MenuBar from './components/NavBar';
 import { Container } from 'semantic-ui-react';
-import Home from './pages/Home'
-import Login from './pages/Login'
-import SignUp from './pages/SignUp'
-import Profile from './pages/Profile'
-import LogOut from './pages/LogOut'
-import Feed from './pages/Feed'
+import Home from './pages/home/Home'
+import Login from './pages/login/Login'
+import SignUp from './pages/signup/SignUp'
+import Profile from './pages/profile/Profile'
+import LogOut from './pages/logout/LogOut'
+import Feed from './pages/feed/Feed'
 
 
 function App() {
