@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
@@ -23,5 +22,5 @@
   "homepage": "https://github.com/MichealJWEllis/Final_Project-MERNG#readme",
   "devDependencies": {
     "concurrently": "^6.2.0"
-}
+  }
 }
