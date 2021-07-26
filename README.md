@@ -39,7 +39,7 @@ Javascript, mongoose, and Graphql
 
 ## Screenshot
 
-undefined
+![homepage](./assets/home.png)
 
 ---
 
