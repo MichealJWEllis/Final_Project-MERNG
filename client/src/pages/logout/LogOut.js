@@ -1,7 +1,12 @@
 import React from 'react'
 import "./logout.css"
+import { useHistory } from 'react-router-dom';
 
 function LogOut() {
+    let history = useHistory()
+    const signup = () => {
+        history.push('/signup')
+    }
     return (
         <div className="logOut">
             <div className="logOutWrapper">
@@ -16,13 +21,13 @@ function LogOut() {
                         <input
                             placeholder="Email"
                             type="email"
-                            required
+
                             className="logOutInput"
                         />
                         <input
                             placeholder="Password"
                             type="password"
-                            required
+
                             minLength="6"
                             className="logOutInput"
 
@@ -30,11 +35,11 @@ function LogOut() {
                         <button className="logOutButton" type="submit">
                             Sign In
                         </button>
-                        <span className="logOutForgot">Forgot Password?</span>
-                        <button className="logOutRegisterButton">
+
+                        <button onClick={signup} className="logOutRegisterButton">
                             Sign Up
                         </button>
-                        <span className="logOutForgot">Sign Up</span>
+
                     </form>
                 </div>
             </div>

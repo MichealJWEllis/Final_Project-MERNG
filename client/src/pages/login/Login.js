@@ -1,8 +1,17 @@
 import React from 'react'
 import "./login.css";
+//import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 // import { CircularProgress } from '@material-ui/core';
 
 function Login() {
+    let history = useHistory()
+    const signup = () => {
+        history.push('/signup')
+    }
+    const home = () => {
+        history.push('/')
+    }
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -13,29 +22,32 @@ function Login() {
                     </span>
                 </div>
                 <div className="loginRight">
+
                     <form className="loginBox">
+                        <h3>Ready to meet other riders?</h3>
                         <input
                             placeholder="Email"
                             type="email"
-                            required
+
                             className="loginInput"
-                        />
+                        /><br />
                         <input
                             placeholder="Password"
                             type="password"
-                            required
+
                             minLength="6"
                             className="loginInput"
 
-                        />
-                        <button className="loginButton" type="submit">
+                        /><br />
+                        <button onClick={home} className="loginButton" type="submit">
                             Login
-                        </button>
-                        <span className="loginForgot">Forgot Password?</span>
-                        <button className="loginRegisterButton">
+                        </button><br />
+
+                        <button
+                            onClick={signup} className="loginRegisterButton">
                             Sign Up
                         </button>
-                        <span className="loginForgot">Sign Up</span>
+
                     </form>
                 </div>
             </div>
