@@ -10,7 +10,7 @@ function Login() {
         history.push('/signup')
     }
     const home = () => {
-        history.push('/')
+        history.push('/home')
     }
     return (
         <div className="login">

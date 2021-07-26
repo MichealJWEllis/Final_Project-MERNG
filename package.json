@@ -1,0 +1,33 @@
+{
+  "name": "final_project-merng",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "dependencies": {
+    "graphql": "^15.5.1",
+    "mongoose": "^5.13.3",
+    "semantic-ui-css": "^2.4.1",
+    "react-router-dom": "^5.2.0",
+    "semantic-ui-react": "^2.0.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichealJWEllis/Final_Project-MERNG.git"
+  },
+  "author": "Micheal Jw Ellis Sr.",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/MichealJWEllis/Final_Project-MERNG/issues"
+  },
+  "homepage": "https://github.com/MichealJWEllis/Final_Project-MERNG#readme",
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+}
+}
